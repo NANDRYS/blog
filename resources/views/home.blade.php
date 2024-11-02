@@ -16,5 +16,7 @@
         </div>
     @endforeach
 
-
+    @if (session('success'))
+        <p>{{ session('success') }}</p>
+    @endif
 @endsection

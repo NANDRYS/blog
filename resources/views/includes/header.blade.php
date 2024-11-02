@@ -21,13 +21,23 @@
                    </li>
                </ul>
                @auth
-                   <p>{{ auth()->user()->email }}</p>
-               @endauth
-               <div class="d-flex ">
-                   <a href="{{ route('user.register') }}" class="btn btn-success">register</a>
+                   <div class="d-flex ">
+                       <span class="text-white">{{ auth()->user()->email }}</span>
+                       <a href="{{ route('user.logout') }}" class="btn btn-success">logout</a>
+                   </div>
+               @else
+                   <div class="d-flex ">
+                       <a href="{{ route('user.register') }}" class="btn btn-success">register</a>
 
-                   <a href="" class="btn btn-primary">login</a>
-               </div>
+                       <a href="{{ route('user.login') }}" class="btn btn-primary">login</a>
+                   </div>
+
+               @endauth
+
+               {{-- @guest
+                   
+               @endguest --}}
+
            </div>
        </div>
    </nav>

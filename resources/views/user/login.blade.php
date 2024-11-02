@@ -1,8 +1,10 @@
 @extends('layouts.main')
 @section('content')
     <div class=" d-flex justify-items-center align-items-center" style="height: 100vh">
-
-        <form action="{{ route('user.store') }}" method="POST"
+        @error('fuck')
+            <p>{{ $message }}</p>
+        @enderror
+        <form action="{{ route('user.loginCheck') }}" method="POST"
             class="d-flex flex-column mx-auto justify-items-center align-items-center" style="width:33%; ">
             @csrf
             <div class="mb-3">
@@ -21,11 +23,7 @@
                     <p>{{ $message }}</p>
                 @enderror
             </div>
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password confirmation</label>
-                <input type="password" name="password_confirmation" class="form-control" id="exampleInputPassword1">
-            </div>
-            <button type="submit" class="btn btn-primary">Register</button>
+            <button type="submit" class="btn btn-primary">Войти в айти</button>
         </form>
     </div>
 @endsection
