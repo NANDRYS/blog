@@ -7,13 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
 
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'post_user');
+    }
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
 
     public static function get_posts()
-    {   
+    {
         //ленивая загрузка
 
         // $posts = Post::all(); 

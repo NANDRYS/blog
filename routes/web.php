@@ -19,10 +19,15 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('home');
 // });
-Route::get('', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('/', [App\Http\Controllers\HomeController::class, 'store'])->name('post.store');
+Route::delete('/', [App\Http\Controllers\HomeController::class, 'delete'])->name('post.delete');
 
-Route::get('register', [UserController::class, 'register'])->name('user.register');
-Route::post('register', [UserController::class, 'store'])->name('user.store');
-Route::get('login', [UserController::class, 'login'])->name('user.login');
-Route::post('login', [UserController::class, 'loginCheck'])->name('user.loginCheck');
+
+Route::middleware('guest')->group(function () {
+   Route::get('register', [UserController::class, 'register'])->name('user.register');
+   Route::post('register', [UserController::class, 'store'])->name('user.store');
+   Route::get('login', [UserController::class, 'login'])->name('user.login');
+   Route::post('login', [UserController::class, 'loginCheck'])->name('user.loginCheck');
+});
 Route::get('logout', [UserController::class, 'logout'])->name('user.logout');

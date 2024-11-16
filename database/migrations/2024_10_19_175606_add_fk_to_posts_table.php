@@ -11,13 +11,24 @@ return new class extends Migration
      *
      * @return void
      */
+    // public function up()
+    // {
+    //     Schema::table('posts', function (Blueprint $table) {
+    //         $table->bigInteger('category_id')->unsigned();
+    //         $table->foreign('category_id')->references('id')->on('catigories');
+    //     });
+    // }
+    // use Illuminate\Support\Facades\Schema;
+
     public function up()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            $table->bigInteger('category_id')->unsigned();
-            $table->foreign('category_id')->references('id')->on('catigories');
-        });
+        if (!Schema::hasColumn('posts', 'category_id')) {
+            Schema::table('posts', function (Blueprint $table) {
+                $table->unsignedBigInteger('category_id')->nullable();
+            });
+        }
     }
+
 
     /**
      * Reverse the migrations.
